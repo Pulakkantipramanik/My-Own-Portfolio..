@@ -185,7 +185,7 @@
         <span>Connect With Us</span>
     </div>
     <div class="contact-form">
-        <form action="">
+        <form  action="" name="submit-to-google-sheet">
             <input type="text" name="Name" placeholder="Your Name">
             <input type="email" name="Email" id="" placeholder="Your Email">
             <p><input type="sms" name="Message" cols="30" rows="10" placeholder="Write Your Message Here"> </p> 
@@ -211,6 +211,17 @@
                             </div>
                             <!-- Javascript -->
                             <script src="script.js"></script>
+            <script>
+  const scriptURL = '<https://script.google.com/macros/s/AKfycbyM5D6dJwWxMRd80YMp2Cxsm-GCvGHduSw3Mw7LfQNIE21w4tFkyqvkNZvSjAv0ExxU/exec>'
+  const form = document.forms['submit-to-google-sheet']
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => console.log('Success!', response))
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
 </body>
 
 </html>
